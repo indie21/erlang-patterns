@@ -1,0 +1,49 @@
+* execute-chain
+
+check errors and final execute the real job function
+
+** foldr
+
+if any fun return {error, Reason}, the execute-chain terminate and return Reason.
+if any return {ok, NewParam}, the NewParam will the the Param of the next fun.
+
+#+begin_src erlang
+
+do_foldr([Last], Param) ->
+  Last(Param);
+do_foldr([Fun | T], Param) ->
+  case Fun(Param) of
+    {ok, NewParam} -> do_foldr(T, NewParam);
+    {error, Reason} -> {error, Reason}
+  end.
+
+foldr(FunctionList, Param) ->
+  do_foldr(FunctionList, Param).
+
+foldr(FunctionList) ->
+  do_foldr(FunctionList, {}).
+
+#+end_src
+
+** each
+
+always use the input param.
+
+#+begin_src erlang
+
+%%% foreach does not return params, just check and exec.
+do_each([Last], Param) ->
+  Last(Param);
+do_each([ValidFun | T], Param) ->
+  case ValidFun(Param) of
+    {ok, _} -> do_each(T, Param);
+    {error, Reason} -> {error, Reason}
+  end.
+
+each(FunctionList, Param) ->
+  do_each(FunctionList, Param).
+
+each(FunctionList) ->
+  do_each(FunctionList, {}).
+
+#+end_src

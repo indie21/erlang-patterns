@@ -1,0 +1,13 @@
+#+TITLE: Erlang Patterns
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="../css/readtheorg.css" />
+
+* Introduction
+
+This respository forus on the erlang patterns in my work experience, ex:
+
+| design pattern | description                                                |
+| execute-chain  | check errors and final execute the real job function       |
+| sub-post       | subscribe to a event and being post when the event happend |
+
+
+  
