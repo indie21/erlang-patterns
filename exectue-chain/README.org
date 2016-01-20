@@ -47,7 +47,7 @@ foldr(FunctionList) ->
 #+end_src
 
 
-useage
+usage
 
 #+begin_src erlang
 
