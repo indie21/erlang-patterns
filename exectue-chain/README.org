@@ -1,6 +1,27 @@
 * execute-chain
 
-check errors and final execute the real job function
+check errors and final execute the real job function.
+
+** Smelly Code
+
+too many case the check.
+
+#+begin_src erlang
+  check_1(BuildingName) ->
+    case xx:check_building_name_valid(BuildingName) of
+      {ok, _} ->
+        case xx:check_building_max_level(BuildingName) of
+          {ok, _} ->
+            case xx:check_more(BuildingName) of
+              {ok, _} ->
+                do_realy_upgrade(BuildingName)
+                E1 -> E1
+            end;
+          E1 -> E1
+        end;
+      E1 -> E1
+    end.
+#+end_src
 
 ** foldr
 
